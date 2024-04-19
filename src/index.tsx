@@ -12,8 +12,8 @@ const LINKING_ERROR =
   '- You are not using Expo Go\n';
 
 type MemojiKeyboardProps = {
-  color: string;
-  style: ViewStyle;
+  onChosen: (event: any) => void;
+  style?: ViewStyle;
 };
 
 const ComponentName = 'MemojiKeyboardView';

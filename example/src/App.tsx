@@ -1,12 +1,27 @@
 import * as React from 'react';
 
-import { StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { MemojiKeyboardView } from 'react-native-memoji-keyboard';
 
+const noMemoji = Image.resolveAssetSource(require('./noMemoji.png')).uri;
+
 export default function App() {
+  const [base64, setBase64] = React.useState('');
+
   return (
     <View style={styles.container}>
-      <MemojiKeyboardView color="#32a852" style={styles.box} />
+      <TouchableOpacity onPress={() => setBase64('')}>
+        <Image source={{ uri: base64 || noMemoji }} width={140} height={140} />
+      </TouchableOpacity>
+
+      {!base64 && (
+        <MemojiKeyboardView
+          onChosen={(e) => {
+            setBase64(`data:image/png;base64,${e.nativeEvent.data}`);
+          }}
+          style={styles.box}
+        />
+      )}
     </View>
   );
 }
@@ -18,8 +33,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
+    flex: 1,
   },
 });
