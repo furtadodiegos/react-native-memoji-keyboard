@@ -1,6 +1,6 @@
 {
   "name": "react-native-memoji-keyboard",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "simple way to get the ios keyboard stickers as base64",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
